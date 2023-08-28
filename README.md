@@ -125,7 +125,7 @@ junior_FastAPI
     ![](https://github.com/s-alex-developer/github.com_supporting-files/blob/main/junior_FastAPI/2.png)
 
 
-### 2. Скачиваем файл с переменными окружения [ [.env](https://github.com/s-alex-developer/github.com_supporting-files/blob/main/junior_FastAPI/.env) ] и добавляем его в корневой каталог проекта.**:
+### 2. Скачиваем файл с переменными окружения [ [.env](https://github.com/s-alex-developer/github.com_supporting-files/blob/main/junior_FastAPI/.env) ] и добавляем его в корневой каталог проекта.:
 ***   
 ![](https://github.com/s-alex-developer/github.com_supporting-files/blob/main/junior_FastAPI/3.png)
 
@@ -401,6 +401,9 @@ DATA_FILE_PATH=../temp/posts.csv  # Путь к файлу с тестовыми
 * Выполняем последовательность команд для перехода в каталог `db` и запуска модуля `crud.py`
 
 ![](https://github.com/s-alex-developer/github.com_supporting-files/blob/main/junior_FastAPI/OS/7.png)
+
+* Выполнение команды `python del.py`, в том же каталоге, приведет к удалению таблицы из БД, индекса из ElasticSearch и всех загруженных данных.
+
 
 ### 10. Приложение запущено и готово к работе:
 ***
