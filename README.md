@@ -125,7 +125,7 @@ junior_FastAPI
     ![](https://github.com/s-alex-developer/github.com_supporting-files/blob/main/junior_FastAPI/2.png)
 
 
-### 2. Скачиваем файл с переменными окружения [ [.env](https://github.com/s-alex-developer/github.com_supporting-files/blob/main/junior_FastAPI/.env) ] и добавляем его в корневой каталог проекта.:
+### 2. Скачиваем файл с переменными окружения [ [.env](https://github.com/s-alex-developer/github.com_supporting-files/blob/main/junior_FastAPI/.env) ] и добавляем его в корневой каталог проекта:
 ***   
 ![](https://github.com/s-alex-developer/github.com_supporting-files/blob/main/junior_FastAPI/3.png)
 
