@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}  Главная {% endblock title %}
+
+    {% block head %}
+
+    <script>
+        const search_posts = () => {
+            const search_request = document.getElementById("start_search").value;
+            window.location.href = `/search/${search_request}`;
+        }
+    </script>
+
+    {% endblock head %}
+
+    {% block body %}
+
+
+        <div>
+            <br>
+            <input id="start_search" type="text" placeholder="Введите текст для поиска">
+            <button onclick="search_posts()" >Найти</button>
+        </div>
+        <br>
+        <h3>Для просмотра и удаления постов необходимо ввести поисковый запрос.</h3>
+    {% endblock body %}

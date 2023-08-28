@@ -1,0 +1,309 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "FastAPI",
+    "version": "0.1.0"
+  },
+  "paths": {
+    "/get_posts": {
+      "get": {
+        "tags": [
+          "API methods"
+        ],
+        "summary": "Search Posts",
+        "description": "Запрос возвращает список постов из БД PostgreSQL\nнаиболее соответствующих поисковому запросу \"query\".\n\n    :param query: Поисковый текстовый запрос.\n\n    :return: Список словарей, где каждый словарь соответствует одной записи в таблице БД и\n             содержит все поля данной записи и их значения.",
+        "operationId": "search_posts_get_posts_get",
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Query"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object"
+                  },
+                  "title": "Response Search Posts Get Posts Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/delete_post": {
+      "delete": {
+        "tags": [
+          "API methods"
+        ],
+        "summary": "Delete Post",
+        "description": "Запрос удаляет пост из индекса ElasticSearch и таблицы БД PostgreSQL\nпо указанному в параметре запроса \"post_id\" идентификатору \"ID публикации\".\n\n    :param post_id: \"ID публикации\".\n\n    :return: Информационное сообщение о результате.",
+        "operationId": "delete_post_delete_post_delete",
+        "parameters": [
+          {
+            "name": "post_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Post Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "anyOf": [
+                    {
+                      "type": "array",
+                      "minItems": 2,
+                      "prefixItems": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "string"
+                        }
+                      ],
+                      "maxItems": 2
+                    },
+                    {
+                      "type": "string"
+                    }
+                  ],
+                  "title": "Response Delete Post Delete Post Delete"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/": {
+      "get": {
+        "tags": [
+          "Web interface"
+        ],
+        "summary": "Start Search Page",
+        "description": "Запрос вызова главной страницы с возможностью выполнения поискового запроса.\n\n    :return: При вводе запроса и выполнении поиска, перенаправит по маршруту \"/search/{search_request}\"\n             Если запрос для поиска не введен, при попытке выполнения перенаправит по маршруту \"/search\"",
+        "operationId": "start_search_page__get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/delete": {
+      "get": {
+        "tags": [
+          "Web interface"
+        ],
+        "summary": "Search Or Delete Page",
+        "description": "Попытка выполнения поиска или удаления постов без введенного запроса приводит к перенаправлению\nна данный маршрут для повторной попытки ввода и выполнения запроса.\n\n    :return: При вводе запроса и выполнении поиска, перенаправит по маршруту \"/search/{search_request}\"\n             Если запрос для поиска не введен, при попытке выполнения перенаправит по маршруту \"/search\"\n\n             При вводе запроса и выполнении удаления, перенаправит по маршруту \"/delete/{post_id}\"\n             Если запрос для удаления не введен, при попытке выполнения перенаправит по маршруту \"/delete\"\"",
+        "operationId": "search_or_delete_page_delete_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/search": {
+      "get": {
+        "tags": [
+          "Web interface"
+        ],
+        "summary": "Search Or Delete Page",
+        "description": "Попытка выполнения поиска или удаления постов без введенного запроса приводит к перенаправлению\nна данный маршрут для повторной попытки ввода и выполнения запроса.\n\n    :return: При вводе запроса и выполнении поиска, перенаправит по маршруту \"/search/{search_request}\"\n             Если запрос для поиска не введен, при попытке выполнения перенаправит по маршруту \"/search\"\n\n             При вводе запроса и выполнении удаления, перенаправит по маршруту \"/delete/{post_id}\"\n             Если запрос для удаления не введен, при попытке выполнения перенаправит по маршруту \"/delete\"\"",
+        "operationId": "search_or_delete_page_search_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/search/{search_request}": {
+      "get": {
+        "tags": [
+          "Web interface"
+        ],
+        "summary": "Search Results Page",
+        "description": "Запрос позволяет получить данные из БД, соответствующие поисковому запросу.\n\n    :param search_request: Поисковый текстовый запрос.\n\n    :return: Результаты поиска с выгрузкой в HTML-формате на веб-страницу.",
+        "operationId": "search_results_page_search__search_request__get",
+        "parameters": [
+          {
+            "name": "search_request",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Search Request"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/delete/{post_id}": {
+      "get": {
+        "tags": [
+          "Web interface"
+        ],
+        "summary": "Delete Results Page",
+        "description": "Запрос удаляет пост из индекса ElasticSearch и таблицы БД PostgreSQL\nпо указанному в параметре запроса \"post_id\" идентификатору \"ID публикации\".\n\n    :param post_id: \"ID публикации\".\n\n    :return: Информационное сообщение о результате с выгрузкой в HTML-формате на веб-страницу.",
+        "operationId": "delete_results_page_delete__post_id__get",
+        "parameters": [
+          {
+            "name": "post_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Post Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      }
+    }
+  }
+}

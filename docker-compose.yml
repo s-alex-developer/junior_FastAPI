@@ -1,0 +1,56 @@
+version: "3"
+
+services:
+  my_app:
+    container_name: my_app_container
+    image: my_app_image
+    build: .
+    ports:
+        - "8008:8000"
+    depends_on:
+      - postgres
+      - elasticsearch
+      - kibana
+      - pgadmin4
+
+  postgres:
+    container_name: my_postgres
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_DB: junior_db
+      POSTGRES_USER: junior
+      POSTGRES_PASSWORD: junior
+    ports:
+      - "2345:5432"
+
+  pgadmin4:
+    container_name: my_pgadmin4
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: junior@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: junior
+    ports:
+      - "8080:80"
+    depends_on:
+      - postgres
+
+  elasticsearch:
+    container_name: my_elasticsearch
+    image: elasticsearch:8.8.1
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+    ports:
+      - "9292:9200"
+
+  kibana:
+    container_name: my_kibana
+    image: kibana:8.8.1
+    environment:
+      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+    ports:
+      - "5656:5601"
+    depends_on:
+      - elasticsearch
+
