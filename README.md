@@ -127,7 +127,7 @@ junior_FastAPI
 
 ### 2. Скачиваем файл с переменными окружения [ [.env](https://github.com/s-alex-developer/github.com_supporting-files/blob/main/junior_FastAPI/.env) ] и добавляем его в корневой каталог проекта:
 *** 
-* В результате скачивания мы получим файл `env.txt`, который необходимо переименовать в `.env`.
+* В результате скачивания мы получим файл `env.txt`, который необходимо переименовать в `.env`
 
 ![](https://github.com/s-alex-developer/github.com_supporting-files/blob/main/junior_FastAPI/3.png)
 
@@ -376,7 +376,7 @@ DELETE junior
 
 ### 7. Скачиваем файл с переменными окружения [ [.env](https://github.com/s-alex-developer/github.com_supporting-files/blob/main/junior_FastAPI/OS/.env) ] и добавляем его в корневой каталог проекта:
 ***
-* В результате скачивания мы получим файл `env.txt`, который необходимо переименовать в `.env`.
+* В результате скачивания мы получим файл `env.txt`, который необходимо переименовать в `.env`
 
 * Файл имеет следующую структуру и набор данных, которые будет необходимо дополнить:
 ```python
